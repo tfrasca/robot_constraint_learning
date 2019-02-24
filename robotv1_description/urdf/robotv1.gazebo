@@ -60,8 +60,8 @@
     <material>Gazebo/Orange</material>
   </gazebo>
  
-  <xacro:leg_gazebo_reference prefix="leftleg"/>
-  <xacro:leg_gazebo_reference prefix="rightleg"/>
+  <xacro:leg_gazebo_reference prefix="left_leg"/>
+  <xacro:leg_gazebo_reference prefix="right_leg"/>
 
     
 </robot>
