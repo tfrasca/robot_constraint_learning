@@ -1,23 +1,25 @@
 <?xml version="1.0"?>
 <robot name="robotv1" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:include filename="$(find robotv1_description)/urdf/leg.xacro"/>
-<xacro:include filename="$(find robotv1_description)/urdf/arm.xacro"/>
-<xacro:include filename="$(find robotv1_description)/urdf/torso.xacro"/>
+<xacro:include filename="$(find robotv1_description)/urdf/utilities.xacro"/>
+<xacro:include filename="$(find robotv1_description)/urdf/lower_body.xacro"/>
+<xacro:include filename="$(find robotv1_description)/urdf/upper_body.xacro"/>
 <xacro:include filename="$(find robotv1_description)/materials/materials.xacro" />
 <!-- only gazebo plug-in -->
 <xacro:include filename="$(find robotv1_description)/urdf/robotv1.gazebo"/>
 
-<link name="dummy"/>
-<joint name="dummy_to_pelvis" type="fixed">
-  <origin xyz="0 0 ${base_pos}" rpy="0 0 0"/>
-  <parent link="dummy" />
+<link name="world"/>
+
+<joint name="fixed_world" type="fixed">
+  <origin xyz="0 0 ${basePosition}" rpy="0 0 0"/>
+  <parent link="world" />
   <child link="pelvis" />
 </joint>
 
-<xacro:leg prefix="leftleg" reflect="1"/>
-<xacro:leg prefix="rightleg" reflect="-1"/>
-<xacro:arm prefix="leftarm" /> 
-
+<joint name="pelvisTorsoJoint" type="fixed">
+  <origin xyz="0 0 ${lenZPelvis/2.0 + jointOffset}"/>
+  <parent link="pelvis"/>
+  <child link="torso"/>
+</joint>
 
 </robot>
