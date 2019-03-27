@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so" >
+    <robotNamespace>/robotv1</robotNamespace>
+    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+
+  <gazebo reference="pelvis">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <minDepth>0.03</minDepth>
+    <self_collide>0</self_collide>
+    <material>Gazebo/White</material>
+  </gazebo>
+ 
+  <gazebo reference="imu_link_pelvis">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <minDepth>0.0001</minDepth>
+    <material>Gazebo/Blue</material>
+    
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>imu/pelvis</topicName>
+        <bodyName>imu_link_pelvis</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_link_pelvis</frameName>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+
+
+
+</robot>

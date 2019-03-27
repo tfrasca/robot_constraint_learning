@@ -1,29 +1,77 @@
 <?xml version="1.0"?>
-<robot name="upper_body" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
   <xacro:include filename="$(find robotv1_description)/urdf/leg.xacro"/>
-  <xacro:property name="lenx_pelvis" value="0.08"/>
-  <xacro:property name="leny_pelvis" value="0.16"/>
-  <xacro:property name="lenz_pelvis" value="0.06"/>
+  <xacro:include filename="$(find robotv1_description)/urdf/lower_body.gazebo"/>
+
+
+  <xacro:property name="lx_pelvis" value="0.05"/>
+  <xacro:property name="ly_pelvis" value="0.10"/>
+  <xacro:property name="lz_pelvis" value="0.04"/>
+  <xacro:property name="lx_imu_link" value="0.03"/>
+  <xacro:property name="ly_imu_link" value="0.03"/>
+  <xacro:property name="lz_imu_link" value="0.005"/>
+ 
+  <xacro:property name="pos_pelvis" value="${lz_u1 + lz_u2+ lz_l0 + lz_l2/2.0 + lz_l3}"/>
+  <link name="world"/>
+  <joint name="world_to_pelvis" type="fixed">
+    <origin xyz="0 0 ${pos_pelvis+ 0.2}" rpy="0 0 0"/>
+    <parent link="world" />
+    <child link="pelvis" />
+  </joint>
 
   <link name="pelvis" >
     <visual>
-      <origin xyz="0 0 0 " rpy="0 0 0" /> 
+      <origin xyz="0 0 0" rpy="0 0 0" /> 
       <geometry>
-        <box size="${lenx_pelvis} ${leny_pelvis} ${lenz_pelvis}"/>
+        <box size="${lx_pelvis} ${ly_pelvis} ${lz_pelvis}"/>
       </geometry>
-      <material name="orange"/>
+      <material name="white"/>
     </visual>
-    <xacro:box_inertia lenx="${lenx_pelvis}" leny="${leny_pelvis}" lenz="${lenz_pelvis}"/>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" /> 
+      <xacro:box_inertia lenx="${lx_pelvis}" leny="${ly_pelvis}" lenz="${lz_pelvis}"/>
+    </inertial>
     <collision>
-      <origin xyz="0 0 0 " rpy="0 0 0" /> 
+      <origin xyz="0 0 0" rpy="0 0 0" /> 
       <geometry>
-        <box size="${lenx_pelvis} ${leny_pelvis} ${lenz_pelvis}"/>
+        <box size="${lx_pelvis} ${ly_pelvis} ${lz_pelvis}"/>
       </geometry>
     </collision>
   </link>
+  
+  <joint name="pelvis_to_imu_link" type="fixed">
+    <origin xyz="0 0 ${-lz_pelvis/2.0}" rpy="0 0 0" />
+    <parent link="pelvis"/>
+    <child link="imu_link_pelvis"/>
+  </joint>
+
+  <link name="imu_link_pelvis" >
+    <visual>
+      <origin xyz="0 0 ${-lz_imu_link/2.0}" rpy="0 0 0" /> 
+      <geometry>
+        <box size="${lx_imu_link} ${ly_imu_link} ${lz_imu_link}"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 ${lz_imu_link/2.0}" rpy="0 0 0" /> 
+      <xacro:box_inertia lenx="${lx_imu_link}" leny="${ly_imu_link}" lenz="${lz_imu_link}"/>
+    </inertial>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" /> 
+      <geometry>
+        <box size="${lx_imu_link} ${ly_imu_link} ${lz_imu_link}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+
+  <xacro:leg prefix="LLEG" reflect="1" />
+  <xacro:leg prefix="RLEG" reflect="-1" />
 
 
-  <xacro:leg prefix="left_leg" reflect="1" />
-  <xacro:leg prefix="right_leg" reflect="-1" />
+
+ 
 
 </robot>

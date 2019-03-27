@@ -2,57 +2,55 @@ robotv1:
   # Publish all joint states -----------------------------------
   joint_state_controller:
     type: joint_state_controller/JointStateController
-    publish_rate: 50
+    publish_rate: 50.0
 
   # Position Controllers ---------------------------------------
-  leftleg_hip_1_joint_controller:
+  LLEG_H0_controller:
     type: effort_controllers/JointPositionController
-    joint: leftleg_hip_1_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-
-  leftleg_hip_2_joint_controller:
+    joint: LLEG_H0
+    pid: {p: 20.0, i: 0.0, d: 0.1}
+  LLEG_H1_controller:
     type: effort_controllers/JointPositionController
-    joint: leftleg_hip_2_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-  leftleg_hip_3_joint_controller:
+    joint: LLEG_H1
+    pid: {p: 20.0, i: 0.0, d: 0.1}
+  LLEG_H2_controller:
     type: effort_controllers/JointPositionController
-    joint: leftleg_hip_3_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-  leftleg_knee_joint_controller:
+    joint: LLEG_H2
+    pid: {p: 20.0, i: 0.0, d: 0.1}
+  LLEG_K0_controller:
     type: effort_controllers/JointPositionController
-    joint: leftleg_knee_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-  leftleg_ang_1_joint_controller:
+    joint: LLEG_K0
+    pid: {p: 20.0, i: 0.0, d: 0.1}
+  LLEG_A0_controller:
     type: effort_controllers/JointPositionController
-    joint: leftleg_ang_1_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-  leftleg_ang_2_joint_controller:
+    joint: LLEG_A0
+    pid: {p: 10.0, i: 0.0, d: 0.05}
+  LLEG_A1_controller:
     type: effort_controllers/JointPositionController
-    joint: leftleg_ang_2_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-   
-  rightleg_hip_1_joint_controller:
+    joint: LLEG_A1
+    pid: {p: 10.0, i: 0.0, d: 0.05}
+  
+  RLEG_H0_controller:
     type: effort_controllers/JointPositionController
-    joint: rightleg_hip_1_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-  rightleg_hip_2_joint_controller:
+    joint: RLEG_H0
+    pid: {p: 20.0, i: 0.0, d: 0.1}
+  RLEG_H1_controller:
     type: effort_controllers/JointPositionController
-    joint: rightleg_hip_2_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-  rightleg_hip_3_joint_controller:
+    joint: RLEG_H1
+    pid: {p: 20.0, i: 0.0, d: 0.1}
+  RLEG_H2_controller:
     type: effort_controllers/JointPositionController
-    joint: rightleg_hip_3_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-  rightleg_knee_joint_controller:
+    joint: RLEG_H2
+    pid: {p: 20.0, i: 0.0, d: 0.1}
+  RLEG_K0_controller:
     type: effort_controllers/JointPositionController
-    joint: rightleg_knee_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-  rightleg_ang_1_joint_controller:
+    joint: RLEG_K0
+    pid: {p: 20.0, i: 0.0, d: 0.1}
+  RLEG_A0_controller:
     type: effort_controllers/JointPositionController
-    joint: rightleg_ang_1_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
-  rightleg_ang_2_joint_controller:
+    joint: RLEG_A0
+    pid: {p: 10.0, i: 0.0, d: 0.05}
+  RLEG_A1_controller:
     type: effort_controllers/JointPositionController
-    joint: rightleg_ang_2_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
- 
+    joint: RLEG_A1
+    pid: {p: 10.0, i: 0.0, d: 0.05}
