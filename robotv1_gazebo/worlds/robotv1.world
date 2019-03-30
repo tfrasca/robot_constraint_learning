@@ -11,6 +11,9 @@
     <include>
       <uri>model://sun</uri>
     </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
 
     <physics type="ode">
       <max_step_size>0.001</max_step_size>

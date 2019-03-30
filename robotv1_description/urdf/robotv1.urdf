@@ -42,7 +42,7 @@
     <self_collide>0</self_collide>
     <material>Gazebo/White</material>
   </gazebo>
-  <gazebo reference="imu_link">
+  <gazebo reference="imu_link_pelvis">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <minDepth>0.0001</minDepth>
@@ -65,10 +65,10 @@
       <pose>0 0 0 0 0 0</pose>
     </sensor>
   </gazebo>
-  <link name="wolrd"/>
-  <joint name="wolrd_to_pelvis" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0.55"/>
-    <parent link="wolrd"/>
+  <link name="dummy"/>
+  <joint name="dummy_to_pelvis" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.548"/>
+    <parent link="dummy"/>
     <child link="pelvis"/>
   </joint>
   <link name="pelvis">
@@ -81,8 +81,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.4"/>
-      <inertia ixx="0.000386666666667" ixy="0.0" ixz="0.0" iyy="0.000136666666667" iyz="0.0" izz="0.000416666666667"/>
+      <mass value="0.34"/>
+      <inertia ixx="0.000328666666667" ixy="0.0" ixz="0.0" iyy="0.000116166666667" iyz="0.0" izz="0.000354166666667"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -94,9 +94,9 @@
   <joint name="pelvis_to_imu_link" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 -0.02"/>
     <parent link="pelvis"/>
-    <child link="imu_link"/>
+    <child link="imu_link_pelvis"/>
   </joint>
-  <link name="imu_link">
+  <link name="imu_link_pelvis">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.0025"/>
       <geometry>
@@ -106,8 +106,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0025"/>
-      <mass value="0.009"/>
-      <inertia ixx="6.9375e-07" ixy="0.0" ixz="0.0" iyy="6.9375e-07" iyz="0.0" izz="1.35e-06"/>
+      <mass value="0.00765"/>
+      <inertia ixx="5.896875e-07" ixy="0.0" ixz="0.0" iyy="5.896875e-07" iyz="0.0" izz="1.1475e-06"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -121,8 +121,8 @@
     <child link="LLEG_u0"/>
     <origin xyz="0 0.05 0"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.0"/>
     <!--
       <safety_controller k_velocity="10" k_position="15" soft_lower_limit="${-7*pi/8}" soft_upper_limit="${7*pi/8}" />
        -->
@@ -147,8 +147,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0.015 0"/>
-      <mass value="0.144"/>
-      <inertia ixx="5.4e-05" ixy="0.0" ixz="0.0" iyy="6.24e-05" iyz="0.0" izz="3e-05"/>
+      <mass value="0.1224"/>
+      <inertia ixx="4.59e-05" ixy="0.0" ixz="0.0" iyy="5.304e-05" iyz="0.0" izz="2.55e-05"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0.015 0"/>
@@ -162,8 +162,8 @@
     <child link="LLEG_u1"/>
     <origin xyz="0 0.03 0"/>
     <axis xyz="1 0 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.0"/>
   </joint>
   <transmission name="LLEG_H1_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -185,8 +185,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 -0.045"/>
-      <mass value="0.324"/>
-      <inertia ixx="0.000243" ixy="0.0" ixz="0.0" iyy="0.0003159" iyz="0.0" izz="0.0001215"/>
+      <mass value="0.2754"/>
+      <inertia ixx="0.00020655" ixy="0.0" ixz="0.0" iyy="0.000268515" iyz="0.0" izz="0.000103275"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 -0.045"/>
@@ -200,8 +200,8 @@
     <child link="LLEG_u2"/>
     <origin xyz="0 0 -0.09"/>
     <axis xyz="0 0 1"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.0"/>
   </joint>
   <transmission name="LLEG_H2_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -223,8 +223,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
-      <mass value="0.144"/>
-      <inertia ixx="6.24e-05" ixy="0.0" ixz="0.0" iyy="5.4e-05" iyz="0.0" izz="3e-05"/>
+      <mass value="0.1224"/>
+      <inertia ixx="5.304e-05" ixy="0.0" ixz="0.0" iyy="4.59e-05" iyz="0.0" izz="2.55e-05"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
@@ -238,8 +238,8 @@
     <child link="LLEG_l0"/>
     <origin xyz="0 0 -0.06"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="0" upper="2.74889357189" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="0" upper="2.74889357189" velocity="6.0"/>
   </joint>
   <transmission name="LLEG_K0_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -261,8 +261,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 -0.08"/>
-      <mass value="0.072"/>
-      <inertia ixx="0.00015495" ixy="0.0" ixz="0.0" iyy="0.00015495" iyz="0.0" izz="2.7e-06"/>
+      <mass value="0.0612"/>
+      <inertia ixx="0.0001317075" ixy="0.0" ixz="0.0" iyy="0.0001317075" iyz="0.0" izz="2.295e-06"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 -0.08"/>
@@ -276,8 +276,8 @@
     <child link="LLEG_l1"/>
     <origin rpy="0 0 0" xyz="0 0 -0.13"/>
     <axis xyz="1 0 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-0.785398163397" upper="0.785398163397" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-0.785398163397" upper="0.785398163397" velocity="6.0"/>
   </joint>
   <transmission name="LLEG_A0_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -299,8 +299,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.144"/>
-      <inertia ixx="5.4e-05" ixy="0.0" ixz="0.0" iyy="6.24e-05" iyz="0.0" izz="3e-05"/>
+      <mass value="0.1224"/>
+      <inertia ixx="4.59e-05" ixy="0.0" ixz="0.0" iyy="5.304e-05" iyz="0.0" izz="2.55e-05"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -314,8 +314,8 @@
     <child link="LLEG_l2"/>
     <origin xyz="-0.02 0 0"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-0.785398163397" upper="0.785398163397" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-0.785398163397" upper="0.785398163397" velocity="6.0"/>
   </joint>
   <transmission name="LLEG_A1_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -337,8 +337,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
-      <mass value="0.144"/>
-      <inertia ixx="6.24e-05" ixy="0.0" ixz="0.0" iyy="5.4e-05" iyz="0.0" izz="3e-05"/>
+      <mass value="0.1224"/>
+      <inertia ixx="5.304e-05" ixy="0.0" ixz="0.0" iyy="4.59e-05" iyz="0.0" izz="2.55e-05"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
@@ -354,21 +354,49 @@
   </joint>
   <link name="LLEG_l3">
     <visual>
-      <origin rpy="0 0 0" xyz="0.035 0 -0.005"/>
+      <origin rpy="0 0 0" xyz="0.035 0 -0.004"/>
       <geometry>
-        <box size="0.1 0.04 0.01"/>
+        <box size="0.1 0.04 0.008"/>
       </geometry>
       <material name="orange"/>
     </visual>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.035 0 -0.005"/>
-      <mass value="0.08"/>
-      <inertia ixx="1.13333333333e-05" ixy="0.0" ixz="0.0" iyy="6.73333333333e-05" iyz="0.0" izz="7.73333333333e-05"/>
+      <origin rpy="0 0 0" xyz="0.035 0 -0.004"/>
+      <mass value="0.0544"/>
+      <inertia ixx="7.54346666667e-06" ixy="0.0" ixz="0.0" iyy="4.56234666667e-05" iyz="0.0" izz="5.25866666667e-05"/>
     </inertial>
     <collision>
-      <origin rpy="0 0 0" xyz="0.035 0 -0.005"/>
+      <origin rpy="0 0 0" xyz="0.035 0 -0.004"/>
       <geometry>
-        <box size="0.1 0.04 0.01"/>
+        <box size="0.1 0.04 0.008"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="LLEG_ft_sensor" type="fixed">
+    <parent link="LLEG_l3"/>
+    <child link="LLEG_l4"/>
+    <origin xyz="0.035 0 -0.008"/>
+    <!--   <limit upper="0" lower="0" effort="0" velocity="1"/>
+      <dynamics damping="0.0" friction="0.0"/>
+  -->
+  </joint>
+  <link name="LLEG_l4">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.0025"/>
+      <geometry>
+        <box size="0.1 0.04 0.005"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 -0.0025"/>
+      <mass value="0.034"/>
+      <inertia ixx="4.60416666667e-06" ixy="0.0" ixz="0.0" iyy="2.84041666667e-05" iyz="0.0" izz="3.28666666667e-05"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.0025"/>
+      <geometry>
+        <box size="0.1 0.04 0.005"/>
       </geometry>
     </collision>
   </link>
@@ -387,8 +415,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0025"/>
-      <mass value="0.009"/>
-      <inertia ixx="6.9375e-07" ixy="0.0" ixz="0.0" iyy="6.9375e-07" iyz="0.0" izz="1.35e-06"/>
+      <mass value="0.00765"/>
+      <inertia ixx="5.896875e-07" ixy="0.0" ixz="0.0" iyy="5.896875e-07" iyz="0.0" izz="1.1475e-06"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -402,11 +430,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="LLEG_u0">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Black</material>
   </gazebo>
@@ -414,11 +443,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="LLEG_u1">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Orange</material>
   </gazebo>
@@ -426,11 +456,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="LLEG_u2">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Black</material>
   </gazebo>
@@ -438,11 +469,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="LLEG_l0">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Orange</material>
   </gazebo>
@@ -450,11 +482,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="LLEG_l1">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Black</material>
   </gazebo>
@@ -462,20 +495,45 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="LLEG_l2">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Orange</material>
   </gazebo>
   <gazebo reference="LLEG_l3">
     <mu1>0.4</mu1>
     <mu2>0.4</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="LLEG_l4">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <dampingFactor>0.01</dampingFactor>
+    <minDepth>0.001</minDepth>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="LLEG_ft_sensor">
+    <provideFeedback>true</provideFeedback>
+    <!--    <plugin name="${prefix}_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>100.0</updateRate>
+        <topicName>${prefix}_ft_sensor_data</topicName> 
+        <jointName>${prefix}_ft_sensor</jointName>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.003</stddev>  
+        </noise>
+      </plugin>
+-->
+    <sensor name="LLEG_ft_sensor" type="force_torque">
+      <update_rate>30</update_rate>
+    </sensor>
   </gazebo>
   <gazebo reference="LLEG_imu_link">
     <mu1>0.2</mu1>
@@ -505,8 +563,8 @@
     <child link="RLEG_u0"/>
     <origin xyz="0 -0.05 0"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.0"/>
     <!--
       <safety_controller k_velocity="10" k_position="15" soft_lower_limit="${-7*pi/8}" soft_upper_limit="${7*pi/8}" />
        -->
@@ -531,8 +589,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.015 0"/>
-      <mass value="0.144"/>
-      <inertia ixx="5.4e-05" ixy="0.0" ixz="0.0" iyy="6.24e-05" iyz="0.0" izz="3e-05"/>
+      <mass value="0.1224"/>
+      <inertia ixx="4.59e-05" ixy="0.0" ixz="0.0" iyy="5.304e-05" iyz="0.0" izz="2.55e-05"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 -0.015 0"/>
@@ -546,8 +604,8 @@
     <child link="RLEG_u1"/>
     <origin xyz="0 -0.03 0"/>
     <axis xyz="1 0 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.0"/>
   </joint>
   <transmission name="RLEG_H1_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -569,8 +627,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 -0.045"/>
-      <mass value="0.324"/>
-      <inertia ixx="0.000243" ixy="0.0" ixz="0.0" iyy="0.0003159" iyz="0.0" izz="0.0001215"/>
+      <mass value="0.2754"/>
+      <inertia ixx="0.00020655" ixy="0.0" ixz="0.0" iyy="0.000268515" iyz="0.0" izz="0.000103275"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 -0.045"/>
@@ -584,8 +642,8 @@
     <child link="RLEG_u2"/>
     <origin xyz="0 0 -0.09"/>
     <axis xyz="0 0 1"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-1.57079632679" upper="1.57079632679" velocity="6.0"/>
   </joint>
   <transmission name="RLEG_H2_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -607,8 +665,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
-      <mass value="0.144"/>
-      <inertia ixx="6.24e-05" ixy="0.0" ixz="0.0" iyy="5.4e-05" iyz="0.0" izz="3e-05"/>
+      <mass value="0.1224"/>
+      <inertia ixx="5.304e-05" ixy="0.0" ixz="0.0" iyy="4.59e-05" iyz="0.0" izz="2.55e-05"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
@@ -622,8 +680,8 @@
     <child link="RLEG_l0"/>
     <origin xyz="0 0 -0.06"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="0" upper="2.74889357189" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="0" upper="2.74889357189" velocity="6.0"/>
   </joint>
   <transmission name="RLEG_K0_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -645,8 +703,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 -0.08"/>
-      <mass value="0.072"/>
-      <inertia ixx="0.00015495" ixy="0.0" ixz="0.0" iyy="0.00015495" iyz="0.0" izz="2.7e-06"/>
+      <mass value="0.0612"/>
+      <inertia ixx="0.0001317075" ixy="0.0" ixz="0.0" iyy="0.0001317075" iyz="0.0" izz="2.295e-06"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 -0.08"/>
@@ -660,8 +718,8 @@
     <child link="RLEG_l1"/>
     <origin rpy="0 0 0" xyz="0 0 -0.13"/>
     <axis xyz="1 0 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-0.785398163397" upper="0.785398163397" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-0.785398163397" upper="0.785398163397" velocity="6.0"/>
   </joint>
   <transmission name="RLEG_A0_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -683,8 +741,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.144"/>
-      <inertia ixx="5.4e-05" ixy="0.0" ixz="0.0" iyy="6.24e-05" iyz="0.0" izz="3e-05"/>
+      <mass value="0.1224"/>
+      <inertia ixx="4.59e-05" ixy="0.0" ixz="0.0" iyy="5.304e-05" iyz="0.0" izz="2.55e-05"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -698,8 +756,8 @@
     <child link="RLEG_l2"/>
     <origin xyz="-0.02 0 0"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="3" friction="0.025"/>
-    <limit effort="30.0" lower="-0.785398163397" upper="0.785398163397" velocity="6.28318530718"/>
+    <dynamics damping="0.03" friction="0.015"/>
+    <limit effort="10.0" lower="-0.785398163397" upper="0.785398163397" velocity="6.0"/>
   </joint>
   <transmission name="RLEG_A1_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -721,8 +779,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
-      <mass value="0.144"/>
-      <inertia ixx="6.24e-05" ixy="0.0" ixz="0.0" iyy="5.4e-05" iyz="0.0" izz="3e-05"/>
+      <mass value="0.1224"/>
+      <inertia ixx="5.304e-05" ixy="0.0" ixz="0.0" iyy="4.59e-05" iyz="0.0" izz="2.55e-05"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 -0.03"/>
@@ -738,21 +796,49 @@
   </joint>
   <link name="RLEG_l3">
     <visual>
-      <origin rpy="0 0 0" xyz="0.035 0 -0.005"/>
+      <origin rpy="0 0 0" xyz="0.035 0 -0.004"/>
       <geometry>
-        <box size="0.1 0.04 0.01"/>
+        <box size="0.1 0.04 0.008"/>
       </geometry>
       <material name="orange"/>
     </visual>
     <inertial>
-      <origin rpy="0 0 0" xyz="0.035 0 -0.005"/>
-      <mass value="0.08"/>
-      <inertia ixx="1.13333333333e-05" ixy="0.0" ixz="0.0" iyy="6.73333333333e-05" iyz="0.0" izz="7.73333333333e-05"/>
+      <origin rpy="0 0 0" xyz="0.035 0 -0.004"/>
+      <mass value="0.0544"/>
+      <inertia ixx="7.54346666667e-06" ixy="0.0" ixz="0.0" iyy="4.56234666667e-05" iyz="0.0" izz="5.25866666667e-05"/>
     </inertial>
     <collision>
-      <origin rpy="0 0 0" xyz="0.035 0 -0.005"/>
+      <origin rpy="0 0 0" xyz="0.035 0 -0.004"/>
       <geometry>
-        <box size="0.1 0.04 0.01"/>
+        <box size="0.1 0.04 0.008"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="RLEG_ft_sensor" type="fixed">
+    <parent link="RLEG_l3"/>
+    <child link="RLEG_l4"/>
+    <origin xyz="0.035 0 -0.008"/>
+    <!--   <limit upper="0" lower="0" effort="0" velocity="1"/>
+      <dynamics damping="0.0" friction="0.0"/>
+  -->
+  </joint>
+  <link name="RLEG_l4">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.0025"/>
+      <geometry>
+        <box size="0.1 0.04 0.005"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 -0.0025"/>
+      <mass value="0.034"/>
+      <inertia ixx="4.60416666667e-06" ixy="0.0" ixz="0.0" iyy="2.84041666667e-05" iyz="0.0" izz="3.28666666667e-05"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.0025"/>
+      <geometry>
+        <box size="0.1 0.04 0.005"/>
       </geometry>
     </collision>
   </link>
@@ -771,8 +857,8 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.0025"/>
-      <mass value="0.009"/>
-      <inertia ixx="6.9375e-07" ixy="0.0" ixz="0.0" iyy="6.9375e-07" iyz="0.0" izz="1.35e-06"/>
+      <mass value="0.00765"/>
+      <inertia ixx="5.896875e-07" ixy="0.0" ixz="0.0" iyy="5.896875e-07" iyz="0.0" izz="1.1475e-06"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -786,11 +872,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="RLEG_u0">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Black</material>
   </gazebo>
@@ -798,11 +885,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="RLEG_u1">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Orange</material>
   </gazebo>
@@ -810,11 +898,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="RLEG_u2">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Black</material>
   </gazebo>
@@ -822,11 +911,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="RLEG_l0">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Orange</material>
   </gazebo>
@@ -834,11 +924,12 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="RLEG_l1">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Black</material>
   </gazebo>
@@ -846,20 +937,45 @@
     <stopCfm>0.0</stopCfm>
     <stopErp>0.2</stopErp>
     <implicitSpringDamper>1</implicitSpringDamper>
+    <provideFeedback>1</provideFeedback>
   </gazebo>
   <gazebo reference="RLEG_l2">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Orange</material>
   </gazebo>
   <gazebo reference="RLEG_l3">
     <mu1>0.4</mu1>
     <mu2>0.4</mu2>
-    <dampingFactor>0.001</dampingFactor>
+    <dampingFactor>0.01</dampingFactor>
     <minDepth>0.003</minDepth>
     <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="RLEG_l4">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <dampingFactor>0.01</dampingFactor>
+    <minDepth>0.001</minDepth>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="RLEG_ft_sensor">
+    <provideFeedback>true</provideFeedback>
+    <!--    <plugin name="${prefix}_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>100.0</updateRate>
+        <topicName>${prefix}_ft_sensor_data</topicName> 
+        <jointName>${prefix}_ft_sensor</jointName>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.003</stddev>  
+        </noise>
+      </plugin>
+-->
+    <sensor name="RLEG_ft_sensor" type="force_torque">
+      <update_rate>30</update_rate>
+    </sensor>
   </gazebo>
   <gazebo reference="RLEG_imu_link">
     <mu1>0.2</mu1>

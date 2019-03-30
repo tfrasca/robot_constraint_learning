@@ -6,17 +6,17 @@
 <!-- load the controllers -->
 <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/robotv1"
 args="
-LLEG_H0_controller LLEG_H1_controller  LLEG_H2_controller LLEG_K0_controller LLEG_A0_controller LLEG_A1_controller 
-
-RLEG_H0_controller RLEG_H1_controller  RLEG_H2_controller RLEG_K0_controller RLEG_A0_controller RLEG_A1_controller 
-
-joint_state_controller"/>
-
-<!-- leftarm_shoulder_1_controller leftarm_shoulder_2_controller leftarm_elbow_controller  leftarm_wrist_1_controller leftarm_wrist_2_controller 
+LLEG_trj_controller 
+RLEG_trj_controller
+joint_state_controller
+"/>
+<!--LLEG_ft_sensor_fixer
+RLEG_ft_sensor_fixer
 -->
-
-
-
+<!--
+RLEG_H0_controller RLEG_H1_controller  RLEG_H2_controller RLEG_K0_controller RLEG_A0_controller RLEG_A1_controller joint_state_controller
+LLEG_H0_controller LEG_H1_controller  LLEG_H2_controller LLEG_K0_controller LLEG_A0_controller LLEG_A1_controller 
+-->
 <!-- convert joint states to TF transforms for rviz, etc -->
 <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
 respawn="false" output="screen">

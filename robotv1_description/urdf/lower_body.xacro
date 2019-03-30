@@ -13,10 +13,18 @@
   <xacro:property name="lz_imu_link" value="0.005"/>
  
   <xacro:property name="pos_pelvis" value="${lz_u1 + lz_u2+ lz_l0 + lz_l2/2.0 + lz_l3}"/>
+<!--
   <link name="world"/>
-  <joint name="world_to_pelvis" type="fixed">
-    <origin xyz="0 0 ${pos_pelvis+ 0.2}" rpy="0 0 0"/>
+  <joint name="world_to_dummy" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
     <parent link="world" />
+    <child link="dummy" />
+  </joint>
+-->
+  <link name="dummy" />
+  <joint name="dummy_to_pelvis" type="fixed">
+    <origin xyz="0 0 ${pos_pelvis+ 0.2}" rpy="0 0 0"/>
+    <parent link="dummy" />
     <child link="pelvis" />
   </joint>
 

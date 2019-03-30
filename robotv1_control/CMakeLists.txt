@@ -13,7 +13,10 @@ find_package(catkin REQUIRED COMPONENTS
   robot_state_publisher
   rviz
   roscpp
+  rospy
+  geometry_msgs
   std_msgs
+  trajectory_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -138,7 +141,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/robotv1_control_node.cpp)
 
-add_executable(ini_pos control_pubulisher/ini_pos.cpp)
+add_executable(ini_pos scripts/ini_pos.cpp)
 target_link_libraries(ini_pos ${catkin_LIBRARIES})
 
 ## Rename C++ executable without prefix

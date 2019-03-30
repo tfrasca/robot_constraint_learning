@@ -3,6 +3,104 @@ robotv1:
   joint_state_controller:
     type: joint_state_controller/JointStateController
     publish_rate: 50.0
+  
+  # LLEG trajectory controller ---------------------------------
+  LLEG_trj_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints: 
+      - LLEG_H0
+      - LLEG_H1
+      - LLEG_H2
+      - LLEG_K0
+      - LLEG_A0
+      - LLEG_A1
+
+    constraints:
+      goal_time: 0.5
+      stopped_velocity_tolerance: 0.02
+      LLEG_H0:
+        trajectory: 0.05
+        goal: 0.02
+      LLEG_H1:
+        trajectory: 0.05
+        goal: 0.02
+      LLEG_H2:
+        trajectory: 0.05
+        goal: 0.02
+      LLEG_K0:
+        trajectory: 0.05
+        goal: 0.02
+      LLEG_A0:
+        trajectory: 0.05
+        goal: 0.02
+      LLEG_A1:
+        trajectory: 0.05
+        goal: 0.02
+    gains: 
+      LLEG_H0: {p: 20.0, d: 0.1}
+      LLEG_H1: {p: 20.0, d: 0.1}
+      LLEG_H2: {p: 20.0, d: 0.1}
+      LLEG_K0: {p: 20.0, d: 0.1}
+      LLEG_A0: {p: 10.0, d: 0.05}
+      LLEG_A1: {p: 10.0, d: 0.05}
+    state_publish_rate: 25
+    action_monitor_rate: 30
+    stop_trajectory_duration: 0
+    allow_partial_joints_goal : true
+  # RLEG trajectory controller ---------------------------------
+ 
+  RLEG_trj_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints: 
+      - RLEG_H0
+      - RLEG_H1
+      - RLEG_H2
+      - RLEG_K0
+      - RLEG_A0
+      - RLEG_A1
+
+    constraints:
+      goal_time: 0.5
+      stopped_velocity_tolerance: 0.02
+      RLEG_H0:
+        trajectory: 0.05
+        goal: 0.02
+      RLEG_H1:
+        trajectory: 0.05
+        goal: 0.02
+      RLEG_H2:
+        trajectory: 0.05
+        goal: 0.02
+      RLEG_K0:
+        trajectory: 0.05
+        goal: 0.02
+      RLEG_A0:
+        trajectory: 0.05
+        goal: 0.02
+      RLEG_A1:
+        trajectory: 0.05
+        goal: 0.02
+    gains: 
+      RLEG_H0: {p: 20.0, d: 0.1}
+      RLEG_H1: {p: 20.0, d: 0.1}
+      RLEG_H2: {p: 20.0, d: 0.1}
+      RLEG_K0: {p: 20.0, d: 0.1}
+      RLEG_A0: {p: 10.0, d: 0.05}
+      RLEG_A1: {p: 10.0, d: 0.05}
+    state_publish_rate: 25
+    action_monitor_rate: 30
+    stop_trajectory_duration: 0
+    allow_partial_joints_goal : true
+ 
+  # Position controllers for the ft sensor
+  LLEG_ft_sensor_fixer:
+    type: effort_controllers/JointPositionController
+    joint: LLEG_ft_sensor
+    pid: {p: 0.0, i: 0.0, d: 0.0}
+  RLEG_ft_sensor_fixer:
+    type: effort_controllers/JointPositionController
+    joint: RLEG_ft_sensor
+    pid: {p: 0.0, i: 0.0, d: 0.0}
 
   # Position Controllers ---------------------------------------
   LLEG_H0_controller:

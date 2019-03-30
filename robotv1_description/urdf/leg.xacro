@@ -5,7 +5,7 @@
   <xacro:property name="joint_friction" value="0.015"/>
   <xacro:property name="joint_damping" value="0.03"/>
   <xacro:property name="joint_effort" value="10.0"/>
-  <xacro:property name="joint_vel" value="3.0"/>
+  <xacro:property name="joint_vel" value="6.0"/>
 
 
   <xacro:property name="lx_u0" value="0.04"/>
@@ -34,7 +34,11 @@
 
   <xacro:property name="lx_l3" value="0.1"/>
   <xacro:property name="ly_l3" value="0.04"/>
-  <xacro:property name="lz_l3" value="0.01"/>
+  <xacro:property name="lz_l3" value="0.008"/>
+  
+  <xacro:property name="lx_l4" value="0.1"/>
+  <xacro:property name="ly_l4" value="0.04"/>
+  <xacro:property name="lz_l4" value="0.005"/>
   
   <xacro:property name="lx_imu_link" value="0.03"/>
   <xacro:property name="ly_imu_link" value="0.03"/>
@@ -287,7 +291,6 @@
       </collision>
     </link>
 
-
     <joint name="${prefix}_l3_fix" type="fixed" >
       <parent link="${prefix}_l2"/>
       <child link="${prefix}_l3"/>
@@ -313,7 +316,45 @@
         </geometry>
       </collision>
     </link>
-  
+
+
+    <joint name="${prefix}_ft_sensor" type="revolute" >
+      <parent link="${prefix}_l3"/>
+      <child link="${prefix}_l4"/>
+      <origin xyz="${lx_l4/2-lx_l2/2} 0 ${-lz_l3}"/>
+      <limit effort="10.0" velocity="1.0" upper="0.0" lower="0.0"/>
+    </joint>
+    <transmission name="${prefix}_ft_sensor_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_ft_sensor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_ft_sensor_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <link name="${prefix}_l4" >
+      <visual>
+        <origin xyz="0 0 ${-lz_l4/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${lx_l4} ${ly_l4} ${lz_l4}"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+      <inertial>
+        <origin xyz="0 0 ${-lz_l4/2}" rpy="0 0 0"/>
+        <xacro:box_inertia  lenx="${lx_l4}" leny="${ly_l4}" lenz="${lz_l4}" />
+      </inertial>
+      <collision>
+        <origin xyz="0 0 ${-lz_l4/2}" rpy="0 0 0"/>
+        <geometry>
+           <box size="${lx_l4} ${ly_l4} ${lz_l4}"/>
+        </geometry>
+      </collision>
+    </link>
+
     <joint name="${prefix}_l3_to_imu_link" type="fixed">
       <origin xyz="${lx_l3/2} 0 0" rpy="0 0 0" />
       <parent link="${prefix}_l3"/>
