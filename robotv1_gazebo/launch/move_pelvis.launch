@@ -31,8 +31,28 @@
   <include file="$(find robotv1_control)/launch/robotv1_control.launch" />
   <!-- publishing zmp -->
   <include file="$(find robotv1_control)/launch/zmp.launch" />
-<!--
-  <include file="$(find demo_moveit_config)/launch/moveit_planning_execution.launch" />
--->
+  
+  <include file="$(find demo_moveit_config)/launch/planning_context.launch">
+      <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+     <param name="use_gui" value="false"/>
+     <rosparam param="source_list">[/robotv1/joint_states]</rosparam>
+  </node>
+  
+  <include file="$(find demo_moveit_config)/launch/move_group.launch">
+      <arg name="publish_monitored_planning_scene" value="true" />
+      <arg name="allow_trajectory_execution" value="true"/>
+      <arg name="fake_execution" value="false"/>
+  </include>
   <!--  <node name="rviz" pkg="rviz" type="rviz"/> -->
+  <node name="move_legs"
+       pkg="robotv1_control"
+       type="move_legs"
+       respawn="false" output="screen">
+     <rosparam command="load"
+         file="$(find demo_moveit_config)/config/kinematics.yaml"/>
+  </node>
+
 </launch>

@@ -14,30 +14,30 @@
 
   <xacro:property name="lx_u1" value="0.06"/>
   <xacro:property name="ly_u1" value="0.03"/>
-  <xacro:property name="lz_u1" value="0.09"/>
+  <xacro:property name="lz_u1" value="0.08"/>
 
   <xacro:property name="lx_u2" value="0.03"/>
   <xacro:property name="ly_u2" value="0.04"/>
-  <xacro:property name="lz_u2" value="0.06"/>
+  <xacro:property name="lz_u2" value="0.08"/>
 
   <xacro:property name="lx_l0" value="0.015"/>
   <xacro:property name="ly_l0" value="0.015"/>
-  <xacro:property name="lz_l0" value="0.16"/>
+  <xacro:property name="lz_l0" value="0.13"/>
   
   <xacro:property name="lx_l1" value="0.04"/>
   <xacro:property name="ly_l1" value="0.03"/>
-  <xacro:property name="lz_l1" value="0.06"/>
+  <xacro:property name="lz_l1" value="0.04"/>
 
-  <xacro:property name="lx_l2" value="0.03"/>
+  <xacro:property name="lx_l2" value="0.02"/>
   <xacro:property name="ly_l2" value="0.04"/>
-  <xacro:property name="lz_l2" value="0.06"/>
+  <xacro:property name="lz_l2" value="0.02"/>
 
-  <xacro:property name="lx_l3" value="0.1"/>
-  <xacro:property name="ly_l3" value="0.04"/>
+  <xacro:property name="lx_l3" value="0.12"/>
+  <xacro:property name="ly_l3" value="0.05"/>
   <xacro:property name="lz_l3" value="0.008"/>
   
-  <xacro:property name="lx_l4" value="0.1"/>
-  <xacro:property name="ly_l4" value="0.04"/>
+  <xacro:property name="lx_l4" value="0.12"/>
+  <xacro:property name="ly_l4" value="0.05"/>
   <xacro:property name="lz_l4" value="0.005"/>
   
   <xacro:property name="lx_imu_link" value="0.03"/>
@@ -98,7 +98,7 @@
        <origin xyz= "0 ${ly_u0*reflect} 0"/>
        <axis xyz="1 0 0"/>
        <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
-       <limit effort="${joint_effort}" velocity="${joint_vel}" lower="${-pi/2}" upper="${pi/2}" />
+       <limit effort="${joint_effort}" velocity="${joint_vel}" lower="${-pi/4}" upper="${pi/4}" />
     </joint>
     <transmission name="${prefix}_H1_tran">
       <type>transmission_interface/SimpleTransmission</type>
@@ -117,7 +117,7 @@
         <geometry>
           <box size="${lx_u1} ${ly_u1} ${lz_u1}"/>
         </geometry>
-        <material name="orange"/>
+        <material name="white"/>
       </visual>
       <inertial>
         <origin xyz="0 0 ${-lz_u1/2 }" rpy="0 0 0"/>
@@ -137,7 +137,7 @@
       <origin xyz="0 0 ${-lz_u1}"/>
       <axis xyz="0 0 1"/>
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
-      <limit effort="${joint_effort}" velocity="${joint_vel}" lower="${-pi/2}" upper="${pi/2}" />
+      <limit effort="${joint_effort}" velocity="${joint_vel}" lower="${-pi/4}" upper="${pi/4}" />
     </joint>
     
     <transmission name="${prefix}_H2_tran">
@@ -197,7 +197,7 @@
         <geometry>
           <box size="${lx_l0} ${ly_l0} ${lz_l0}"/>
         </geometry>
-        <material name="orange"/>
+        <material name="white"/>
       </visual>
       <inertial>
         <origin xyz="0 0 ${-lz_l0/2}" rpy="0 0 0"/>
@@ -214,10 +214,10 @@
     <joint name="${prefix}_A0" type="revolute" >
       <parent link="${prefix}_l0"/>
       <child link="${prefix}_l1"/>
-      <origin xyz="0 0 ${-lz_l0+lz_l1/2}" rpy="0 0 0"/>
-      <axis xyz="1 0 0"/>
+      <origin xyz="0 0 ${-lz_l0}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
-      <limit effort="${joint_effort}" velocity="${joint_vel}" lower="${-pi/4}" upper="${pi/4}" />
+      <limit effort="${joint_effort}" velocity="${joint_vel}" lower="${-pi/2}" upper="${pi/2}" />
     </joint>
     
     <transmission name="${prefix}_A0_tran">
@@ -233,18 +233,18 @@
 
     <link name="${prefix}_l1" >
       <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 ${-lz_l1/2}" rpy="0 0 0"/>
         <geometry>
           <box size="${lx_l1} ${ly_l1} ${lz_l1}"/>
         </geometry>
         <material name="black"/>
       </visual>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 ${-lz_l1/2}" rpy="0 0 0"/>
         <xacro:box_inertia  lenx="${lx_l1}" leny="${ly_l1}" lenz="${lz_l1}" />
       </inertial>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 ${-lz_l1/2}" rpy="0 0 0"/>
         <geometry>
           <box size="${lx_l1} ${ly_l1} ${lz_l1}"/>
         </geometry>
@@ -254,8 +254,8 @@
     <joint name="${prefix}_A1" type="revolute" >
       <parent link="${prefix}_l1"/>
       <child link="${prefix}_l2"/>
-      <origin xyz="${-lx_l1/2} 0 0"/>
-      <axis xyz="0 1 0"/>
+      <origin xyz="0 0 ${-lz_l1}"/>
+      <axis xyz="1 0 0"/>
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
       <limit effort="${joint_effort}" velocity="${joint_vel}" lower="${-pi/4}" upper="${pi/4}" />
     </joint>
@@ -273,18 +273,18 @@
 
     <link name="${prefix}_l2" >
       <visual>
-        <origin xyz="0 0 ${-lz_l2/2}" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <box size="${lx_l2} ${ly_l2} ${lz_l2}"/>
         </geometry>
-        <material name="orange"/>
+        <material name="white"/>
       </visual>
       <inertial>
-        <origin xyz="0 0 ${-lz_l2/2}" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <xacro:box_inertia  lenx="${lx_l2}" leny="${ly_l2}" lenz="${lz_l2}" />
       </inertial>
       <collision>
-        <origin xyz="0 0 ${-lz_l2/2}" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <box size="${lx_l2} ${ly_l2} ${lz_l2}"/>
         </geometry>
@@ -294,23 +294,23 @@
     <joint name="${prefix}_l3_fix" type="fixed" >
       <parent link="${prefix}_l2"/>
       <child link="${prefix}_l3"/>
-      <origin xyz="0 0 ${-lz_l2}"/>
+      <origin xyz="${lx_l2/4} 0 ${-lz_l2/2}"/>
     </joint>
 
     <link name="${prefix}_l3" >
       <visual>
-        <origin xyz="${lx_l3/2-lx_l2/2} 0 ${-lz_l3/2}" rpy="0 0 0"/>
+        <origin xyz="0 0 ${-lz_l3/2}" rpy="0 0 0"/>
         <geometry>
           <box size="${lx_l3} ${ly_l3} ${lz_l3}"/>
         </geometry>
-        <material name="orange"/>
+        <material name="white"/>
       </visual>
       <inertial>
-        <origin xyz="${lx_l3/2-lx_l2/2} 0 ${-lz_l3/2}" rpy="0 0 0"/>
+        <origin xyz="0 0 ${-lz_l3/2}" rpy="0 0 0"/>
         <xacro:box_inertia  lenx="${lx_l3}" leny="${ly_l3}" lenz="${lz_l3}" />
       </inertial>
       <collision>
-        <origin xyz="${lx_l3/2-lx_l2/2} 0 ${-lz_l3/2}" rpy="0 0 0"/>
+        <origin xyz="0 0 ${-lz_l3/2}" rpy="0 0 0"/>
         <geometry>
            <box size="${lx_l3} ${ly_l3} ${lz_l3}"/>
         </geometry>
@@ -321,7 +321,7 @@
     <joint name="${prefix}_ft_sensor" type="revolute" >
       <parent link="${prefix}_l3"/>
       <child link="${prefix}_l4"/>
-      <origin xyz="${lx_l4/2-lx_l2/2} 0 ${-lz_l3}"/>
+      <origin xyz="0 0 ${-lz_l3}"/>
       <limit effort="10.0" velocity="1.0" upper="0.0" lower="0.0"/>
     </joint>
     <transmission name="${prefix}_ft_sensor_tran">
@@ -356,7 +356,7 @@
     </link>
 
     <joint name="${prefix}_l3_to_imu_link" type="fixed">
-      <origin xyz="${lx_l3/2} 0 0" rpy="0 0 0" />
+      <origin xyz="${lx_l3/2-lx_imu_link/2} 0 0" rpy="0 0 0" />
       <parent link="${prefix}_l3"/>
       <child link="${prefix}_imu_link"/>
     </joint>

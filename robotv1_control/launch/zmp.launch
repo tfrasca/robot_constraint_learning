@@ -1,0 +1,7 @@
+<launch>
+
+<node name="single_foot_zmp" pkg="robotv1_control" type="zmp.py"  output="screen"/>
+
+<node name="both_feet_zmp" pkg="robotv1_control" type="zmp_both_feet.py"  output="screen"/>
+
+</launch>

@@ -1,0 +1,31 @@
+controller_list:
+  - name: fake_LLEG_controller
+    joints:
+      - LLEG_H0
+      - LLEG_H1
+      - LLEG_H2
+      - LLEG_K0
+      - LLEG_A0
+      - LLEG_A1
+  - name: fake_RLEG_controller
+    joints:
+      - RLEG_H0
+      - RLEG_H1
+      - RLEG_H2
+      - RLEG_K0
+      - RLEG_A0
+      - RLEG_A1
+  - name: fake_LEGs_controller
+    joints:
+      - LLEG_H0
+      - LLEG_H1
+      - LLEG_H2
+      - LLEG_K0
+      - LLEG_A0
+      - LLEG_A1
+      - RLEG_H0
+      - RLEG_H1
+      - RLEG_H2
+      - RLEG_K0
+      - RLEG_A0
+      - RLEG_A1

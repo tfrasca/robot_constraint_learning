@@ -6,7 +6,7 @@
     <!-- Link1 -->
     <gazebo reference="${prefix}_H0" >
       <stopCfm>0.0</stopCfm>
-      <stopErp>0.2</stopErp>
+      <stopErp>1.0</stopErp>
       <implicitSpringDamper>1</implicitSpringDamper>
       <provideFeedback>1</provideFeedback>
     </gazebo>
@@ -22,7 +22,7 @@
 
     <gazebo reference="${prefix}_H1" >
       <stopCfm>0.0</stopCfm>
-      <stopErp>0.2</stopErp>
+      <stopErp>1.0</stopErp>
       <implicitSpringDamper>1</implicitSpringDamper>
       <provideFeedback>1</provideFeedback>
     </gazebo>
@@ -32,12 +32,12 @@
       <mu2>0.2</mu2>
       <dampingFactor>0.01</dampingFactor>
       <minDepth>0.003</minDepth>  
-      <material>Gazebo/Orange</material>
+      <material>Gazebo/White</material>
     </gazebo>
   
     <gazebo reference="${prefix}_H2" >
       <stopCfm>0.0</stopCfm>
-      <stopErp>0.2</stopErp>
+      <stopErp>1.0</stopErp>
       <implicitSpringDamper>1</implicitSpringDamper>
       <provideFeedback>1</provideFeedback>
     </gazebo>
@@ -51,7 +51,7 @@
    
     <gazebo reference="${prefix}_K0" >
       <stopCfm>0.0</stopCfm>
-      <stopErp>0.2</stopErp>
+      <stopErp>1.0</stopErp>
       <implicitSpringDamper>1</implicitSpringDamper>
       <provideFeedback>1</provideFeedback>
     </gazebo>
@@ -60,12 +60,12 @@
       <mu2>0.2</mu2>
       <dampingFactor>0.01</dampingFactor>
       <minDepth>0.003</minDepth>  
-      <material>Gazebo/Orange</material>
+      <material>Gazebo/White</material>
     </gazebo>
    
     <gazebo reference="${prefix}_A0" >
       <stopCfm>0.0</stopCfm>
-      <stopErp>0.2</stopErp>
+      <stopErp>1.0</stopErp>
       <implicitSpringDamper>1</implicitSpringDamper>
       <provideFeedback>1</provideFeedback>
     </gazebo>
@@ -79,7 +79,7 @@
     
     <gazebo reference="${prefix}_A1" >
       <stopCfm>0.0</stopCfm>
-      <stopErp>0.2</stopErp>
+      <stopErp>1.0</stopErp>
       <implicitSpringDamper>1</implicitSpringDamper>
       <provideFeedback>1</provideFeedback>
     </gazebo>
@@ -89,22 +89,22 @@
       <mu2>0.2</mu2>
       <dampingFactor>0.01</dampingFactor>
       <minDepth>0.003</minDepth>  
-      <material>Gazebo/Orange</material>
+      <material>Gazebo/White</material>
     </gazebo>
    
     <gazebo reference="${prefix}_l3" >
-      <mu1>0.4</mu1>
-      <mu2>0.4</mu2>
+      <mu1>0.2</mu1>
+      <mu2>0.2</mu2>
       <dampingFactor>0.01</dampingFactor>
       <minDepth>0.003</minDepth>  
-      <material>Gazebo/Orange</material>
+      <material>Gazebo/White</material>
     </gazebo>
     
     <gazebo reference="${prefix}_l4" >
       <mu1>1</mu1>
       <mu2>1</mu2>
       <dampingFactor>0.01</dampingFactor>
-      <minDepth>0.001</minDepth>  
+      <minDepth>0.003</minDepth>  
       <material>Gazebo/Black</material>
     </gazebo>
  
@@ -114,13 +114,13 @@
 
     <gazebo>
       <plugin name="${prefix}_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
-        <updateRate>30.0</updateRate>
+        <updateRate>100.0</updateRate>
         <topicName>robotv1/sensor/ft_sensor/${prefix}_ft</topicName> 
         <jointName>${prefix}_ft_sensor</jointName>
         <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
-          <stddev>0.0001</stddev> <!-- change this to simulate noise --> 
+          <stddev>0.001</stddev> <!-- change this to simulate noise --> 
         </noise>
       </plugin>
     </gazebo>

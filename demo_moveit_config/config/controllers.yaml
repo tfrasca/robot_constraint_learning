@@ -1,0 +1,25 @@
+controller_manager_ns: ''
+controller_list:
+  - name: robotv1/LLEG_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - LLEG_A0
+      - LLEG_A1
+      - LLEG_K0
+      - LLEG_H0
+      - LLEG_H1
+      - LLEG_H2
+
+  - name: robotv1/RLEG_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - RLEG_A0
+      - RLEG_A1
+      - RLEG_K0
+      - RLEG_H0
+      - RLEG_H1
+      - RLEG_H2

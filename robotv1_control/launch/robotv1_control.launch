@@ -6,8 +6,8 @@
 <!-- load the controllers -->
 <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/robotv1"
 args="
-LLEG_trj_controller 
-RLEG_trj_controller
+LLEG_controller 
+RLEG_controller
 joint_state_controller
 "/>
 <!--LLEG_ft_sensor_fixer

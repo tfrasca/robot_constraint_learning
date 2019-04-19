@@ -1,45 +1,21 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(robotv1_control)
+project(hardware)
 
-# Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
+## Compile as C++11, supported in ROS Kinetic and newer
+# add_compile_options(-std=c++11)
 
-find_package(Eigen3 REQUIRED)
-
-if(NOT EIGEN3_INCLUDE_DIRS)
-  set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIRS})
-endif()
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  controller_manager
-  joint_state_controller
-  robot_state_publisher
-  rviz
   roscpp
   rospy
-  geometry_msgs
-  std_msgs
-  trajectory_msgs
-  interactive_markers
-  moveit_core
-  moveit_visual_tools
-  moveit_ros_planning
-  moveit_ros_planning_interface
-  pluginlib
-  geometric_shapes
-  pcl_ros
-  pcl_conversions
-  rosbag
-  tf2_ros
-  tf2_eigen
-  tf2_geometry_msgs
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-find_package(Boost REQUIRED system filesystem date_time thread)
+
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -94,7 +70,7 @@ find_package(Boost REQUIRED system filesystem date_time thread)
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   sensor_msgs
 # )
 
 ################################################
@@ -127,20 +103,9 @@ find_package(Boost REQUIRED system filesystem date_time thread)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  LIBRARIES
-#    interactivity_utils
-  INCLUDE_DIRS
-    include
-  CATKIN_DEPENDS
-    moveit_core
-    moveit_visual_tools
-    moveit_ros_planning_interface
-    interactive_markers
-  DEPENDS
-    EIGEN3
 #  INCLUDE_DIRS include
-#  LIBRARIES robotv1_control
-#  CATKIN_DEPENDS controller_manager joint_state_controller robot_state_publisher rviz
+#  LIBRARIES hardware
+#  CATKIN_DEPENDS roscpp rospy sensor_msgs
 #  DEPENDS system_lib
 )
 
@@ -150,15 +115,14 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-
-include_directories(SYSTEM ${THIS_PACKAGE_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} ${EIGEN3_INCLUDE_DIRS})
-include_directories(${catkin_INCLUDE_DIRS})
-link_directories(${catkin_LIBRARY_DIRS})
-
+include_directories(
+# include
+  ${catkin_INCLUDE_DIRS}
+)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/robotv1_control.cpp
+#   src/${PROJECT_NAME}/hardware.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -169,14 +133,7 @@ link_directories(${catkin_LIBRARY_DIRS})
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/robotv1_control_node.cpp)
-
-add_executable(ini_pos src/ini_pos.cpp)
-target_link_libraries(ini_pos ${catkin_LIBRARIES})
-
-add_executable(move_legs src/move_legs.cpp)
-target_link_libraries(move_legs ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-
+# add_executable(${PROJECT_NAME}_node src/hardware_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -214,10 +171,6 @@ target_link_libraries(move_legs ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
 
-# install(TARGETS move_legs ${CATKIN_PACKAGE_BIN_DESTINATION})
-# install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
-
 ## Mark cpp header files for installation
 # install(DIRECTORY include/${PROJECT_NAME}/
 #   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
@@ -237,7 +190,7 @@ target_link_libraries(move_legs ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_robotv1_control.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_hardware.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
