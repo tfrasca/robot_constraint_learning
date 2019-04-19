@@ -28,8 +28,21 @@ class Interface:
             "RLEG_H0": 6,
             "RLEG_H1": 7,
             "RLEG_H2": 8,
-            "RLEG_K0": 9,  }
-        
+            "RLEG_K0": 9  }
+        self.calib = {
+            "LLEG_A0": [1, np.pi/2],
+            "LLEG_A1": [1, np.pi/2],
+            "LLEG_H0": [1, np.pi/2],
+            "LLEG_H1": [-1, np.pi/2],
+            "LLEG_H2": [-1, n,pi/2],
+            "LLEG_K0": [-1, np.pi],
+            
+            "RLEG_A0": [-1, np.pi/2],
+            "RLEG_A1": [1, np.pi/2],  
+            "RLEG_H0": [-1, np.pi/2],
+            "RLEG_H1": [-1, np.pi/2],
+            "RLEG_H2": [-1, np.pi/2],
+            "RLEG_K0": [1, 0]  }
 
     # get the joint position and name from topic
     def callback(self, data): 
@@ -40,10 +53,13 @@ class Interface:
     # calibrate the difference of the joint direction and limitation between real robot and simulation(URDF) 
     def calibration(self):
         self.pos = np.asarray(self.pos)
+        for i in range(len(self.name)):
+            self.pos[i] = self.pos[i]*self.calib[self.name[i]][0] + self.calib[self.name[i]][1] 
+        print("after calibration",self.pos)
 
     # convert the angle data to the pulse bit, resolution 4096
     def rad_to_pulse(self):
-        self.pos = (self.pos/np.pi + 1)*4096*self.frequency//1000 
+        self.pos = (2*self.pos/np.pi + 1)*4096*self.frequency//1000 
     
     # send command to the controller 
     def execute(self):
