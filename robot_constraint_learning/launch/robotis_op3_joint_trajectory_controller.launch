@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>                                                          
+<launch>                                                                        
+  <arg name="nameSpace" default="/robotis_op3"/>
+<!-- Load joint controller configurations from YAML file to parameter server -->
+<rosparam file="$(find robot_constraint_learning)/config$(arg nameSpace)_joint_trajectory_controller.yaml" command="load"/>
+
+<!-- load the controllers -->                                                 
+<!--
+<node pkg="controller_manager" type="spawner" name="controller_spawner" respawn="false"
+  output="screen" ns="/robotis_op3" args="joint_state_controller                
+                                          leg_traj_controller
+                                          head_pan_position                     
+                                          head_tilt_position" />                
+                                          -->
+<node pkg="controller_manager" type="spawner" name="controller_spawner" respawn="false"
+  output="screen" ns="$(arg nameSpace)" args="
+                                          joint_state_controller
+                                          leg_traj_controller
+                                          arm_traj_controller
+                                          head_pan_position
+                                          head_tilt_position
+                                          " />                
+</launch>                                                                       
