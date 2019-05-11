@@ -47,3 +47,39 @@ in new terminal:
 ```roscd robot_constraint_learning/scripts```
 
 ```python RLEnv.py```
+
+*note!!!*
+package `hardware` needs the real robot. 
+package `robotv1_control`, `demo_moveit_config` need to put in a moveit workspace.
+package `robotv1_gazebo`,`robotv1_description` need gazebo and rviz.
+
+For simulation of the robotv1(biped robot)
+Put package `robotv1_control`, `demo_moveit_config`, `robotv1_gazebo`,`robotv1_description` into a moveit workspace. 
+
+Every launch file should be executed seperately, make sure only one of this launch file is running at one time.
+
+for move pelvis by inputing w/s/a/d/R, one command at a time.run
+
+```roslaunch robotv1_gazebo move_pelvis.launch```
+
+(it's not teleop_keyboard, you need to press enter after typing a command). This launch file will start rviz and gazebo at the same time. 
+
+for visualize the moveit motion plan through interactive marker, run
+
+```roslaunch demo_moveit_config demo.launch```
+
+for moveit plan execution on gazebo, run 
+
+```roslaunch robotv1_gazebo robotv1_gazebo.launch```
+
+```roslaunch demo_moveit_config moveit_planning_execution.launch ```
+
+for visualize the robot in rviz with fake joint publisher, run 
+
+```roslaunch robotv1_description robotv1_rviz.launch```
+
+for start a gazebo simulation only, run 
+
+```roslaunch robotv1_gazebo robotv1_gazebo.launch```
+
+
