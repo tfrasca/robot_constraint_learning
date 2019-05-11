@@ -57,6 +57,7 @@ package `robotv1_control`, `demo_moveit_config` need to put in a moveit workspac
 package `robotv1_gazebo`,`robotv1_description` need gazebo and rviz.
 
 **For simulation of the robotv1(biped robot)**
+
 Put package `robotv1_control`, `demo_moveit_config`, `robotv1_gazebo`,`robotv1_description` into a moveit workspace. 
 
 Every launch file should be executed seperately, make sure only one of this launch file is running at one time.
