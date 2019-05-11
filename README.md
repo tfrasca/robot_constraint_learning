@@ -1,4 +1,6 @@
 # robot_constraint_learning
+Env: ROS kinetic + Ubuntu 16.04
+
 
 required packages
 
