@@ -52,7 +52,7 @@ in new terminal:
 
 *note!!!*
 
-package `hardware` needs the real robot. 
+package `hardware` needs to put on the real robot. 
 
 package `robotv1_control`, `demo_moveit_config` need to put in a moveit workspace.
 
