@@ -94,9 +94,9 @@ int main(int argc, char** argv)
     std::vector<double> rleg_joint_values;
     std::vector<double> legs_joint_values;
     
-    double z_step = 0.03;
-    double x_step = 0.03;
-    float time_step = 2;
+    double z_step = 0.04;
+    double x_step = 0.04;
+    float time_step = 0.8;
 
     
     while (ros::ok()){

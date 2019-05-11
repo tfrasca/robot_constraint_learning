@@ -31,8 +31,6 @@
   <include file="$(find robotv1_control)/launch/robotv1_control.launch" />
   <!-- publishing zmp -->
   <include file="$(find robotv1_control)/launch/zmp.launch" />
-<!--
-  <include file="$(find demo_moveit_config)/launch/moveit_planning_execution.launch" />
--->
+  
   <!--  <node name="rviz" pkg="rviz" type="rviz"/> -->
 </launch>

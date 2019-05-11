@@ -152,7 +152,9 @@ catkin_package(
 ## Your package locations should be listed before other locations
 
 include_directories(SYSTEM ${THIS_PACKAGE_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} ${EIGEN3_INCLUDE_DIRS})
-include_directories(${catkin_INCLUDE_DIRS})
+
+include_directories(include ${catkin_INCLUDE_DIRS})
+
 link_directories(${catkin_LIBRARY_DIRS})
 
 
@@ -177,6 +179,8 @@ target_link_libraries(ini_pos ${catkin_LIBRARIES})
 add_executable(move_legs src/move_legs.cpp)
 target_link_libraries(move_legs ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
+add_executable(walk src/walk.cpp src/walk_src.cpp)
+target_link_libraries(walk ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
